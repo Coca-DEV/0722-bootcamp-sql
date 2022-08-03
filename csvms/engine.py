@@ -12,14 +12,10 @@ class Engine():
         :param sql: String with sql statement"""
         ast = parse(sql)
         if ast.get('create table') is not None:
-            self._create_table(
-                name = ast['create table']['name'],
-                columns = ast['create table']['columns']
+            return self._create_table(
+                tbl_name = ast['create table']['name'],
+                tbl_columns = ast['create table']['columns']
             )
-        elif ast.get('drop') is not None:
-                self._drop_table(
-                    name = ast['drop']['table']
-                )
         else:
             raise NotImplementedError
 
@@ -29,8 +25,8 @@ class Engine():
             cname = _c_['name']
             ctype = Table.dtypes[list(_c_['type'].keys())[0]]
             cols[cname] = ctype
-
         Table(name = tbl_name, columns = cols).save()
+        return f"A tabela {tbl_name} foi criada com sucesso!"
 
     def _insert_table(self):
         print()
