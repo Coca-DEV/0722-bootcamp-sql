@@ -23,8 +23,14 @@ class Engine():
         else:
             raise NotImplementedError
 
-    def _create_table(self, name: str, columns: list):
-        print()
+    def _create_table(self, tbl_name: str, tbl_columns: list):
+        cols = dict()
+        for _c_ in tbl_columns:
+            cname = _c_['name']
+            ctype = Table.dtypes[list(_c_['type'].keys())[0]]
+            cols[cname] = ctype
+
+        Table(name = tbl_name, columns = cols).save()
 
     def _insert_table(self):
         print()
