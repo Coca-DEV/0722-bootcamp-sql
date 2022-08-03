@@ -20,9 +20,20 @@ class Engine():
                 self._drop_table(
                     name = ast['drop']['table']
                 )
+        else:
+            raise NotImplementedError
 
     def _create_table(self, name: str, columns: list):
         print()
 
-    def _drop_table(self, name: str):
+    def _insert_table(self):
+        print()
+
+    def _update_table(self):
+        print()
+
+    def _delete_item(self):
+        print()
+
+    def _insert_num_table(self):
         print()
